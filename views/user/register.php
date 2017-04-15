@@ -31,12 +31,12 @@
 						<input type="text" class="mdl-textfield__input" id="name" name="name" value="<?php echo $name; ?>"/>
 						<label for="name" class="mdl-textfield__label">Ім'я</label>
 					</div>
-					
+
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<input type="email" class="mdl-textfield__input" id="email" name="email" value="<?php echo $email; ?>"/>
 						<label for="email" class="mdl-textfield__label">Email</label>
 					</div>
-					
+
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<input type="password" class="mdl-textfield__input" id="password" name="password"/>
 						<label for="password" class="mdl-textfield__label">Пароль</label>

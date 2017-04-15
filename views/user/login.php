@@ -24,12 +24,13 @@
 						<input type="email" class="mdl-textfield__input" id="email" name="email" value="<?php echo $email; ?>"/>
 						<label for="email" class="mdl-textfield__label">Email</label>
 					</div>
-					
+
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<input type="password" class="mdl-textfield__input" id="password" name="password"/>
 						<label for="password" class="mdl-textfield__label">Пароль</label>
 					</div>
 					<input type="submit" name="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" value="Ввійти"/>
+					<a href="/user/register/" class="mdl-button mdl-js-button mdl-js-ripple-effect">Реєстрація</a>
 				</form>
 			</div>
 		</div>

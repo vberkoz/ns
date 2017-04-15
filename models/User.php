@@ -4,7 +4,7 @@ class User {
   public static function register($name, $email, $password) {
     $role = '';
     $db = Db::getConnection();
-    $sql = 'INSERT INTO ns_user (name, email, password, role) VALUES (:name, :email, :password, :role)';
+    $sql = 'INSERT INTO ns_users (name, email, password, role) VALUES (:name, :email, :password, :role)';
     $result = $db->prepare($sql);
     $result->bindParam(':name', $name, PDO::PARAM_STR);
     $result->bindParam(':email', $email, PDO::PARAM_STR);
@@ -34,7 +34,7 @@ class User {
 
   public static function checkEmailExists($email) {
     $db = Db::getConnection();
-    $sql = 'SELECT COUNT(*) FROM ns_user WHERE email = :email';
+    $sql = 'SELECT COUNT(*) FROM ns_users WHERE email = :email';
     $result = $db->prepare($sql);
     $result->bindParam(':email', $email, PDO::PARAM_STR);
     $result->execute();
@@ -45,7 +45,7 @@ class User {
 
   public static function checkUserData($email, $password) {
     $db = Db::getConnection();
-    $sql = 'SELECT * FROM ns_user WHERE email = :email AND password = :password';
+    $sql = 'SELECT * FROM ns_users WHERE email = :email AND password = :password';
     $result = $db->prepare($sql);
     $result->bindParam(':email', $email, PDO::PARAM_STR);
     $result->bindParam(':password', $password, PDO::PARAM_STR);
@@ -59,7 +59,7 @@ class User {
   public static function auth($userId) {
     $_SESSION['user'] = $userId;
     $db = Db::getConnection();
-    $sql = 'SELECT name FROM ns_user WHERE id = :id';
+    $sql = 'SELECT name FROM ns_users WHERE id = :id';
     $result = $db->prepare($sql);
     $result->bindParam(':id', $userId, PDO::PARAM_STR);
     $result->execute();
@@ -82,7 +82,7 @@ class User {
   public static function getUserById($id) {
     if ($id) {
       $db = Db::getConnection();
-      $sql = 'SELECT * FROM ns_user WHERE id = :id';
+      $sql = 'SELECT * FROM ns_users WHERE id = :id';
       $result = $db->prepare($sql);
       $result->bindParam(':id', $id, PDO::PARAM_INT);
       $result->setFetchMode(PDO::FETCH_ASSOC);
@@ -93,7 +93,7 @@ class User {
 
   public static function edit($id, $name, $password) {
     $db = Db::getConnection();
-    $sql = "UPDATE ns_user SET name = :name, password = :password WHERE id = :id";
+    $sql = "UPDATE ns_users SET name = :name, password = :password WHERE id = :id";
     $result = $db->prepare($sql);
     $result->bindParam(':id', $id, PDO::PARAM_INT);
     $result->bindParam(':name', $name, PDO::PARAM_INT);
