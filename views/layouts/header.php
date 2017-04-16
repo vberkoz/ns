@@ -45,6 +45,7 @@
 
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
           <a href="/" class="mdl-layout__tab <?php echo $overviewPage;?>">Огляд</a>
+          <a href="/contacts/" class="mdl-layout__tab <?php echo $contactPage;?>">Контакти</a>
         <!-- <a href="#" class="mdl-layout__tab <?php //echo $detailsPage;?>">Details</a> -->
         <!-- <a href="/admin/" class="mdl-layout__tab">Admin</a> -->
         <!-- <a href="/user/register/" class="mdl-layout__tab">Register</a> -->

@@ -139,7 +139,8 @@
 									<?php endif; ?>
 								<?php endif; ?>
 
-								<?php if ((!User::isGuest()) && (User::checkLogged() != $comment['user_id'])): ?>
+								<?php if (!User::isGuest()): ?>
+								<?php if (User::checkLogged() != $comment['user_id']): ?>
 									<form class="form" method="post" action="/product/<?php echo $product[0]['id']; ?>/">
 										<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 											<!-- <textarea rows=1 class="mdl-textfield__input" id="comment"></textarea> -->
@@ -169,6 +170,7 @@
 												</span>
 											</button>
 										</form>
+									<?php endif; ?>
 									<?php endif; ?>
 
 								<br>
@@ -218,7 +220,8 @@
 										<?php endif; ?>
 									<?php endif; ?>
 
-									<?php if ((!User::isGuest()) && (User::checkLogged() != $reply['user_id'])): ?>
+									<?php if (!User::isGuest()): ?>
+									<?php if (User::checkLogged() != $reply['user_id']): ?>
 										<form class="form" method="post" action="/product/<?php echo $product[0]['id']; ?>/" style="margin-left: 50px;">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 												<!-- <textarea rows=1 class="mdl-textfield__input" id="comment"></textarea> -->
@@ -249,6 +252,7 @@
 												</button>
 											</form>
 
+									<?php endif; ?>
 									<?php endif; ?>
 									<br>
 
