@@ -114,20 +114,32 @@
 								<div class="comment__text">
 									<?php echo $comment['comment_text']; ?>
 								</div>
-<!--
-								<nav class="comment__actions">
-									<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-										<i class="material-icons" role="presentation">thumb_up</i><span class="visuallyhidden">like comment</span>
-									</button>
-									<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-										<i class="material-icons" role="presentation">thumb_down</i><span class="visuallyhidden">dislike comment</span>
-									</button>
-									<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-										<i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share comment</span>
-									</button>
-								</nav> -->
 
+								<!-- Comment buttons -->
 								<?php if (!User::isGuest()): ?>
+									<?php if (User::checkLogged() != $comment['user_id']): ?>
+										<nav class="comment__actions">
+											<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="like<?php echo $comment['user_id']; ?>">
+												<i class="material-icons" role="presentation">thumb_up</i><span class="visuallyhidden">like comment</span>
+											</button>
+											<div class="mdl-tooltip" data-mdl-for="like<?php echo $comment['user_id']; ?>">Like</div>
+										</nav>
+									<?php endif; ?>
+									<?php if (User::checkLogged() == $comment['user_id']): ?>
+										<nav class="comment__actions">
+											<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="edit<?php echo $comment['user_id']; ?>">
+												<i class="material-icons" role="presentation">create</i><span class="visuallyhidden">edit comment</span>
+											</button>
+											<div class="mdl-tooltip" data-mdl-for="edit<?php echo $comment['user_id']; ?>">Edit comment</div>
+											<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="delete<?php echo $comment['user_id']; ?>">
+												<i class="material-icons" role="presentation">clear</i><span class="visuallyhidden">delete comment</span>
+											</button>
+											<div class="mdl-tooltip" data-mdl-for="delete<?php echo $comment['user_id']; ?>">Delete comment</div>
+										</nav>
+									<?php endif; ?>
+								<?php endif; ?>
+
+								<?php if ((!User::isGuest()) && (User::checkLogged() != $comment['user_id'])): ?>
 									<form class="form" method="post" action="/product/<?php echo $product[0]['id']; ?>/">
 										<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 											<!-- <textarea rows=1 class="mdl-textfield__input" id="comment"></textarea> -->
@@ -142,6 +154,7 @@
 											</span>
 										</button>
 									</form>
+									<?php endif; ?>
 									<?php if (User::checkLogged() == $comment['user_id']): ?>
 										<form class="form" method="post" action="/product/<?php echo $product[0]['id']; ?>/">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -157,7 +170,7 @@
 											</button>
 										</form>
 									<?php endif; ?>
-								<?php endif; ?>
+
 								<br>
 							<?php endif; ?>
 
@@ -180,26 +193,38 @@
 									<div class="comment__text" style="margin-left: 50px;">
 										<?php echo $reply['comment_text']; ?>
 									</div>
-<!--
-									<nav class="comment__actions" style="margin-left: 50px;">
-										<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-											<i class="material-icons" role="presentation">thumb_up</i><span class="visuallyhidden">like comment</span>
-										</button>
-										<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-											<i class="material-icons" role="presentation">thumb_down</i><span class="visuallyhidden">dislike comment</span>
-										</button>
-										<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-											<i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share comment</span>
-										</button>
-									</nav> -->
 
+									<!-- Comment buttons -->
 									<?php if (!User::isGuest()): ?>
+										<?php if (User::checkLogged() != $reply['user_id']): ?>
+											<nav class="comment__actions" style="margin-left: 50px;">
+												<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="like<?php echo $reply['user_id']; ?>">
+													<i class="material-icons" role="presentation">thumb_up</i><span class="visuallyhidden">like comment</span>
+												</button>
+												<div class="mdl-tooltip" data-mdl-for="like<?php echo $reply['user_id']; ?>">Like</div>
+											</nav>
+										<?php endif; ?>
+										<?php if (User::checkLogged() == $reply['user_id']): ?>
+											<nav class="comment__actions" style="margin-left: 50px;">
+												<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="edit<?php echo $reply['user_id']; ?>">
+													<i class="material-icons" role="presentation">create</i><span class="visuallyhidden">edit comment</span>
+												</button>
+												<div class="mdl-tooltip" data-mdl-for="edit<?php echo $reply['user_id']; ?>">Edit comment</div>
+												<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="delete<?php echo $reply['user_id']; ?>">
+													<i class="material-icons" role="presentation">clear</i><span class="visuallyhidden">delete comment</span>
+												</button>
+												<div class="mdl-tooltip" data-mdl-for="delete<?php echo $reply['user_id']; ?>">Delete comment</div>
+											</nav>
+										<?php endif; ?>
+									<?php endif; ?>
+
+									<?php if ((!User::isGuest()) && (User::checkLogged() != $reply['user_id'])): ?>
 										<form class="form" method="post" action="/product/<?php echo $product[0]['id']; ?>/" style="margin-left: 50px;">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 												<!-- <textarea rows=1 class="mdl-textfield__input" id="comment"></textarea> -->
 												<input type="text" class="mdl-textfield__input" id="comment" name="comment">
 												<input type="text" class="visuallyhidden" id="to_user" name="to_user" value="<?php echo $reply['user_id']; ?>">
-												<input type="text" class="visuallyhidden" id="comment_id" name="comment_id" value="<?php echo $reply['id']; ?>">
+												<input type="text" class="visuallyhidden" id="comment_id" name="comment_id" value="<?php echo $comment['id']; ?>">
 												<label for="comment" class="mdl-textfield__label">Відповісти</label>
 											</div>
 											<button type="submit" name="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" value="create">
@@ -208,6 +233,7 @@
 												</span>
 											</button>
 										</form>
+										<?php endif; ?>
 										<?php if (User::checkLogged() == $reply['user_id']): ?>
 											<form class="form" method="post" action="/product/<?php echo $product[0]['id']; ?>/" style="margin-left: 50px;">
 												<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -222,7 +248,7 @@
 													</span>
 												</button>
 											</form>
-										<?php endif; ?>
+
 									<?php endif; ?>
 									<br>
 
