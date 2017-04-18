@@ -33,7 +33,7 @@
 </head>
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header site">
       <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
         <div class="mdl-layout--large-screen-only mdl-layout__header-row"></div>
 
@@ -46,13 +46,13 @@
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
           <a href="/" class="mdl-layout__tab <?php echo $overviewPage;?>">Огляд</a>
           <a href="/contacts/" class="mdl-layout__tab <?php echo $contactPage;?>">Контакти</a>
-        <!-- <a href="#" class="mdl-layout__tab <?php //echo $detailsPage;?>">Details</a> -->
-        <!-- <a href="/admin/" class="mdl-layout__tab">Admin</a> -->
-        <!-- <a href="/user/register/" class="mdl-layout__tab">Register</a> -->
+          <div class="mdl-layout-spacer"></div>
+          <a href="/cart/" class="mdl-layout__tab <?php echo $cartPage;?>">
+            Кошик (<span id="cart-count"><?php echo Cart::countItems();?></span>)
+          </a>
         <?php if (User::isGuest()): ?>
           <a href="/user/login/" class="mdl-layout__tab">Ввійти</a>
         <?php else: ?>
-          <div class="mdl-layout-spacer"></div>
           <a href="/cabinet/" class="mdl-layout__tab <?php echo $cabinetPage;?>"><?php echo $_SESSION['user_name'] ?></a>
           <a href="/user/logout/" class="mdl-layout__tab">Вийти</a>
         <?php endif; ?>

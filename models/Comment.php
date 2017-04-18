@@ -72,6 +72,20 @@ class Comment
     return $result;
   }
 
+  public static function delComment($id)
+  {
+    $db = Db::getConnection();
+    $sql = 'DELETE FROM ns_comments WHERE id = :id';
+    $result = $db->prepare($sql);
+    $result->bindParam(':id', $id, PDO::PARAM_STR);
+    $result->execute();
+    $sql = 'DELETE FROM ns_comments WHERE reply_to_comment = :id';
+    $result = $db->prepare($sql);
+    $result->bindParam(':id', $id, PDO::PARAM_STR);
+    $result->execute();
+    return $result;
+  }
+
 }
 
 ?>

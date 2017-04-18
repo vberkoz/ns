@@ -1,5 +1,6 @@
 
       <footer class="mdl-mega-footer">
+
         <div class="mdl-mega-footer--middle-section">
           <div class="mdl-mega-footer--drop-down-section">
             <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
@@ -56,5 +57,76 @@
     </div>
     <!-- <a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/text-only/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a> -->
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="js/jquery-3.2.1.min.js"></script> -->
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $(".add-to-cart").click(function() {
+          var id = $(this).attr("data-id");
+          $.post("/cart/addAjax/" + id, {}, function(data) {
+            $("#cart-count").html(data);
+          });
+          return false;
+        });
+      });
+
+      $(document).ready(function() {
+        $(".create-comm").click(function() {
+          $(".create-comm-field").hide();
+          $(".edit-comm-field").hide();
+          $(".removal-request").hide();
+          $(this).parent().next().show();
+        });
+      });
+
+      // $(document).ready(function() {
+      //   $(".create-comm-confirm").click(function() {
+      //     var id = $(this).attr("data-id");
+      //     $.post("/comment/create/",
+      //     {
+      //
+      //     },
+      //     function(data) {
+      //
+      //     });
+      //     $(this).parent().parent().parent().remove();
+      //   });
+      // });
+
+      $(document).ready(function() {
+        $(".edit-comm").click(function() {
+          $(".create-comm-field").hide();
+          $(".edit-comm-field").hide();
+          $(".removal-request").hide();
+          $(this).parent().next().show();
+        });
+      });
+
+      $(document).ready(function() {
+        $(".del-comm").click(function() {
+          $(".create-comm-field").hide();
+          $(".edit-comm-field").hide();
+          $(".removal-request").hide();
+          $(this).next().show();
+        });
+      });
+
+      $(document).ready(function() {
+        $(".removal-request-cancel").click(function() {
+          $(".removal-request").hide();
+        });
+      });
+
+      $(document).ready(function() {
+        $(".removal-request-confirm").click(function() {
+          var id = $(this).attr("data-id");
+          $.post("/comment/del/" + id, {}, function(data) {
+          });
+          $(this).parent().parent().parent().remove();
+        });
+      });
+    </script>
+
   </body>
 </html>

@@ -54,5 +54,29 @@ class Product
     }
   }
 
+  public static function getProductByIds($idsArray)
+  {
+    $products = array();
+
+    $db = Db::getConnection();
+
+    $idsString = implode(',', $idsArray);
+
+    $sql = "SELECT * FROM ns_products WHERE id IN ($idsString)";
+
+    $result = $db->query($sql);
+    $result->setFetchMode(PDO::FETCH_ASSOC);
+
+    $i = 0;
+    while ($row = $result->fetch()) {
+      $products[$i]['id'] = $row['id'];
+      $products[$i]['name'] = $row['name'];
+      $products[$i]['price'] = $row['price'];
+      $products[$i]['image'] = $row['image'];
+      $i++;
+    }
+
+    return $products;
+  }
 }
 ?>
